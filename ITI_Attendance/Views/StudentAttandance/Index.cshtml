@@ -1,0 +1,44 @@
+﻿@model ITI_Attendance.Models.StudentAttendance
+
+@{
+    ViewData["Title"] = "Student Attendance";
+}
+
+
+    <h4>Student Attendance</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Index">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Id" class="control-label"></label>
+                    <input asp-for="Id" class="form-control" readonly />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SelectedDay" class="control-label"></label>
+                    <select asp-for="SelectedDay" class="form-control">
+                        <option value="">Select a day</option>
+                        <option value="Saturday">Saturday</option>
+                        <option value="Sunday">Sunday</option>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                    </select>
+                    <span asp-validation-for="SelectedDay" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+    @Html.ActionLink("Back to Profile", "Profile", "student", new { id = @ViewBag.std.Id }, new { @class = "btn btn-secondary" })
+</div>
+

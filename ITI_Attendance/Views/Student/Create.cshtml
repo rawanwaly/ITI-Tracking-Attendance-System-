@@ -1,0 +1,49 @@
+﻿@model ITI_Attendance.Models.Student
+
+@{
+    ViewData["Title"] = "Create Student";
+}
+<h2>Create Student</h2>
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Age" class="control-label"></label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageName" class="form-label"></label>
+        <input  type="file" name="img" asp-for="ImageName" class="form-control" />
+    <span asp-validation-for="ImageName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DeptNum" class="control-label"></label>
+        <select asp-for="DeptNum" class="form-control" asp-items="ViewBag.Departments"></select>
+        <span asp-validation-for="DeptNum" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="HrId" class="control-label"></label>
+        <select asp-for="HrId" class="form-control" asp-items="ViewBag.Hrs"></select>
+        <span asp-validation-for="HrId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password" class="control-label"></label>
+        <input asp-for="Password" class="form-control" type="password"/>
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

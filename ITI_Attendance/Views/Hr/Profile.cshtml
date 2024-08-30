@@ -1,0 +1,40 @@
+﻿@model ITI_Attendance.Models.Hr
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<h1>Profile</h1>
+
+<div>
+    <h4>HR Information</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-outline-warning">Edit</a> |
+    <a asp-action="VerifyStudents" asp-route-hrId="@Model?.Id" class="btn btn-outline-primary">Show Unverified Students</a> |
+    <a asp-action="UploadStudents" asp-controller="Hr" asp-route-id="@Model?.Id" class="btn btn-outline-info">Upload Students</a>
+
+
+</div>
+

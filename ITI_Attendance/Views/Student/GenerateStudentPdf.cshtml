@@ -1,0 +1,62 @@
+﻿@model ITI_Attendance.Models.Student
+
+@{
+    ViewData["Title"] = "Student Index";
+}
+
+<!-- Display Student's Photo -->
+@if (!string.IsNullOrEmpty(Model.ImageName))
+{
+    <img src="~/Image/@Model.ImageName" alt="Profile Photo" class="img-thumbnail" width="150" height="150" />
+}
+else
+{
+    <img src="~/Image/17.jpg" alt="Default Profile Photo" class="img-thumbnail" width="150" height="150" />
+}
+
+<p><strong>Email:</strong> @Model.Email</p>
+<p><strong>Age:</strong> @Model.Age</p>
+<p><strong>Department:</strong> @Model.Department?.Name</p>
+
+<!-- Display IsVerified Status -->
+<p><strong>Verified:</strong> @(Model.IsVerified ? "Yes" : "No")</p>
+
+<h3>Courses Taken</h3>
+@if (Model.Intakes.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Intake Date</th>
+                <th>Degree</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var intake in Model.Intakes)
+            {
+                <tr>
+                    <td>@intake.Program.Name</td>
+                    <td>@intake.Intake.ToShortDateString()</td>
+                    <td>@intake.Degree</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No courses found.</p>
+}
+<div>
+    <dt class="col-sm-2">
+        Attendance
+    </dt>
+                    <div class="text-center mt-4">
+                        @Html.ActionLink("Download Student Card PDF", "GenerateStudentPdf", "Student", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

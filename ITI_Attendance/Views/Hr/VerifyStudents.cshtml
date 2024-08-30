@@ -1,0 +1,37 @@
+﻿@model List<ITI_Attendance.Models.Student>
+
+@{
+    ViewData["Title"] = "Unverified Students";
+}
+
+<h1>Unverified Students</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>HR</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Name</td>
+                <td>@student.Email</td>
+                <td>@student.Age</td>
+                <td>@(student.Hr?.Name ?? "N/A")</td> <!-- Check if Hr is null -->
+                <td>
+                    <form asp-action="VerifyStudents" method="post">
+                        <input type="hidden" name="studentId" value="@student.Id" />
+                        <input type="hidden" name="hrId" value="@student.HrId ?? 0" /> <!-- Check if HrId is null -->
+                        <button type="submit" class="btn btn-success">Verify</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

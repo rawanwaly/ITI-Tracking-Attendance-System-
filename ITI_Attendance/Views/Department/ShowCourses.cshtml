@@ -1,0 +1,35 @@
+﻿@model Department
+@{
+    ViewBag.Title = "Show Courses";
+}
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Dept Name</th>
+            <th>Capcity</th>
+            <th>Course List</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Id</td>
+            <td>@Model.Name</td>
+            <td>@Model.Capcity</td>
+            <td>
+                <ul class="list-group">
+                    @foreach (var item in Model.Programs)
+                    {
+                        <li class="list-group-item list-group-item-action">
+                            <a asp-action="AddDegree" asp-controller="Department" asp-route-dept_Id="@Model.Id" asp-route-crs_Id="@item.Id" class="btn btn-success">Add Degree</a>
+                            @item.Name
+                        </li>
+                    }
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

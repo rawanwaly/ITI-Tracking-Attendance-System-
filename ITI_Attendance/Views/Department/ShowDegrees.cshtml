@@ -1,0 +1,34 @@
+﻿@model IEnumerable<StudentProgramIntake>
+
+@{
+    ViewBag.Title = "Degree";
+    var course = ViewBag.Course as ITI_Attendance.Models.Program;
+    var department = ViewBag.Department as ITI_Attendance.Models.Department;
+}
+
+<div class="container">
+    <h3>Department Name: @department.Name</h3>
+    <h3>Course Name: @course.Name</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Degree</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Student.Name</td>
+                    <td>@item.Degree</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="@Url.Action("AddDegree", new { dept_Id = department.Id, crs_Id = course.Id })" class="btn btn-primary">Back to Add Degree</a>
+
+</div>
+
+

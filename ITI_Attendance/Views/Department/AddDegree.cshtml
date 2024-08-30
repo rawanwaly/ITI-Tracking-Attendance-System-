@@ -1,0 +1,41 @@
+﻿@* @model ITI_Attendance.ViewModel.AddDegreeViewModel
+
+@{
+    ViewBag.Title = "Add Degree";
+}
+
+<h3>Department Name: @Model.Department.Name</h3>
+<h3>Program Name: @Model.Program.Name</h3>
+
+<form method="post">
+    @foreach (var degree in Model.Degrees)
+    {
+        <div class="form-group">
+            <label>Student Name: @degree.StudentName</label>
+            <input type="hidden" name="Degrees[@degree.StudentId].StudentId" value="@degree.StudentId" />
+            <input type="number" name="Degrees[@degree.StudentId].Degree" value="@degree.Degree" class="form-control" />
+        </div>
+    }
+    <br />
+    <input type="submit" value="Save" class="btn btn-info" />
+</form> *@
+@model ITI_Attendance.ViewModel.AddDegreeViewModel
+@{
+    ViewBag.Title = "Add Degree";
+}
+
+<h3>Department Name: @Model.Department.Name</h3>
+<h3>Progran Name: @Model.Program.Name</h3>
+
+<form method="post">
+    @foreach (var student in Model.Department.Students)
+    {
+        var existingDegree = Model.Degrees.FirstOrDefault(d => d.StudentId == student.Id)?.Degree;
+        <div class="form-group">
+            <label>Student Name: @student.Name</label>
+            <input type="number" name="deg[@student.Id]" value="@existingDegree" class="form-control" />
+        </div>
+    }
+    <br />
+    <input type="submit" value="Add" class="btn btn-info" />
+</form>

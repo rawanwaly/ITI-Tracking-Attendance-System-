@@ -1,0 +1,16 @@
+﻿@model Hr
+@{
+    ViewData["Title"] = "Upload Students";
+}
+
+<h1>Upload Students</h1>
+
+<form asp-action="UploadStudents" asp-controller="Hr" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <input asp-for="Id" type="hidden" />
+        <label for="ExcelFile">Select Excel File:</label>
+        <input type="file" id="ExcelFile" name="ExcelFile" class="form-control" />
+    </div>
+    <br />
+    <input type="submit" class="btn btn-outline-primary"></input>
+</form>

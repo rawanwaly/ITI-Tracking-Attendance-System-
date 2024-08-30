@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ITI_Attendance.Models.Student>
+
+@{
+    ViewData["Title"] = "List of student";
+}
+
+<h1>List of Student</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-info">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsVerified)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hr)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                    <img src="~/Image/@item.ImageName" alt=" Photo" width="20" height="20" />
+             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsVerified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hr.Name)
+            </td>
+            <td>
+                <a asp-action="Edit2" asp-route-id="@item.Id" class="btn btn-outline-warning">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-success">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Delete</a> |
+                <a asp-action="GenerateStudentPdf" asp-route-id="@item.Id" class="btn btn-outline-info">Dowload Student Pdf</a> 
+
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
